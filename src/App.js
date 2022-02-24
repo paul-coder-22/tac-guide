@@ -10,8 +10,9 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 
 import SignInSide from './SignIn/SigninSide';
-import Register from './SignIn/Register';
-import Welcome from "./Welcome";
+import SignUp from './SignIn/SignUp';
+import Welcome from "./Dashboard/Welcome";
+import Register from './Dashboard/Register';
 
 const auth = firebase.auth()
 // const firestore = firebase.firestore()
@@ -24,9 +25,10 @@ function App() {
     <div className="App">
       <Router>
         <Routes>
-          <Route path="/" element={user ? <Navigate to="/dashboard" /> : <SignInSide />} ></Route>
-          <Route path="/register" element={<Register />} ></Route>
-          <Route path="/dashboard" element={<Welcome />} ></Route>
+          <Route path="/" exact element={user ? <Navigate to="register" /> : <SignInSide />} />
+          <Route path="signup" element={<SignUp />} ></Route>
+          <Route path="dashboard" element={<Welcome />} ></Route>
+          <Route path="register" element={<Register />} ></Route>
         </Routes>
       </Router>
     </div>

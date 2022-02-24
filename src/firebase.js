@@ -1,6 +1,7 @@
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
+import { useRef } from 'react';
 
 
 firebase.initializeApp({
@@ -29,5 +30,8 @@ const login = async ({ email, password }) => {
         .signInWithEmailAndPassword(email, password);
     return res.user;
 }
+// User collection
+let userRef = firestore.collection('User')
+let tacRef = firestore.collection('Tac')
 
-export { auth, provider, register, login }
+export { auth, provider, register, login, userRef, tacRef }
